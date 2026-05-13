@@ -1,0 +1,47 @@
+---
+import Card from "./Card.astro";
+import Tag from "./Tag.astro";
+
+interface Props {
+  title: string;
+  type: string;
+  description: string;
+  tags: string[];
+  href?: string;
+  github?: string;
+  note?: string;
+}
+
+const { title, type, description, tags, href, github, note } = Astro.props;
+---
+
+<Card className="flex h-full flex-col gap-5 p-6">
+  <div class="flex items-center justify-between gap-3">
+    <Tag tone="accent">{type}</Tag>
+    <span class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Selected</span>
+  </div>
+  <div class="space-y-3">
+    <h3 class="text-[1.45rem] leading-[1.12]">{title}</h3>
+    <p>{description}</p>
+  </div>
+  <div class="flex flex-wrap gap-2">
+    {tags.map((tag) => <Tag>{tag}</Tag>)}
+  </div>
+  {(href || github || note) && (
+    <div class="mt-auto space-y-3 pt-2">
+      <div class="flex flex-wrap gap-4 text-sm font-medium text-accent">
+        {href && (
+          <a class="title-link" href={href} target="_blank" rel="noreferrer">
+            Live link
+          </a>
+        )}
+        {github && (
+          <a class="title-link" href={github} target="_blank" rel="noreferrer">
+            GitHub
+          </a>
+        )}
+      </div>
+      {note && <p class="text-sm">{note}</p>}
+    </div>
+  )}
+</Card>

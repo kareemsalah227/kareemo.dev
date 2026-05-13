@@ -1,0 +1,276 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/Button.astro";
+import Card from "../components/Card.astro";
+import ContactCard from "../components/ContactCard.astro";
+import ExperienceCard from "../components/ExperienceCard.astro";
+import NowCard from "../components/NowCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import ResponsiveImage from "../components/ResponsiveImage.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import Tag from "../components/Tag.astro";
+import ValueCard from "../components/ValueCard.astro";
+import {
+  beyondCodeCards,
+  nowCards,
+  quickFacts,
+  siteConfig,
+  workStyleChips,
+} from "../data/site";
+
+const experience = (await getCollection("experience"))
+  .filter((entry) => entry.data.featuredHome)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+  .slice(0, 2);
+
+const projects = (await getCollection("projects"))
+  .filter((entry) => entry.data.featuredHome)
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+  .slice(0, 3);
+---
+
+<BaseLayout title={`${siteConfig.name} | ${siteConfig.title}`} description={siteConfig.description}>
+  <section class="section-space">
+    <div class="container-shell grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_22rem] lg:items-start">
+      <div class="reveal-up">
+        <p class="section-eyebrow mb-4 text-accent-contrast">Software Engineer</p>
+        <h1 class="max-w-[13ch] text-[2.65rem] leading-[0.98] md:text-[4.25rem]">
+          Hi, I&apos;m {siteConfig.name}.
+        </h1>
+        <div class="mt-6 max-w-[42rem] space-y-4">
+          <p class="text-[1.05rem] md:text-[1.15rem]">
+            I&apos;m a software engineer who likes solving problems with computers. Recently,
+            that has meant a lot of frontend-heavy product work, but I enjoy working across
+            tools, languages, and environments when the problem is interesting.
+          </p>
+          <p class="text-[1.05rem] md:text-[1.15rem]">
+            I care about simple systems, clear communication, kind collaboration, and
+            building things that are useful.
+          </p>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <Button href={siteConfig.resumeHref}>Download Resume</Button>
+          <Button href="/contact" variant="secondary">
+            Contact Me
+          </Button>
+          <Button href="/work" variant="ghost">
+            View Work
+          </Button>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-2">
+          {quickFacts.map((fact) => (
+            <Tag tone="accent">{fact}</Tag>
+          ))}
+        </div>
+      </div>
+
+      <Card className="overflow-hidden p-4 reveal-up">
+        <div class="rounded-[1.75rem] bg-accent-soft/70 p-3">
+          <ResponsiveImage
+            src="/images/placeholders/portrait-warm.svg"
+            alt="Warm portrait placeholder illustration."
+            loading="eager"
+          />
+        </div>
+        <div class="mt-5 space-y-4 px-2 pb-2">
+          <div class="flex items-center justify-between gap-3">
+            <div>
+              <p class="font-mono text-xs uppercase tracking-[0.18em] text-accent">Currently</p>
+              <p class="mt-2 text-base text-text">Open to interesting software opportunities.</p>
+            </div>
+            <span class="inline-flex h-3 w-3 rounded-full bg-accent"></span>
+          </div>
+          <div class="grid gap-3">
+            <div class="rounded-2xl bg-surface px-4 py-3">
+              <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Recent focus</p>
+              <p class="mt-2 text-sm text-text">Frontend-heavy product work with a broader engineering mindset.</p>
+            </div>
+            <div class="rounded-2xl bg-surface px-4 py-3">
+              <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Looking for</p>
+              <p class="mt-2 text-sm text-text">Thoughtful teams, useful products, and chances to keep learning.</p>
+            </div>
+          </div>
+        </div>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-shell">
+      <SectionHeader
+        eyebrow="At a glance"
+        title="A quick read for recruiters, with a little more personality for everyone else."
+      />
+      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
+        <ValueCard title="Role" description="Software Engineer" />
+        <ValueCard title="Recent focus" description="Frontend-heavy product work" />
+        <ValueCard title="Strengths" description="Problem-solving, clean code, communication, simplicity" />
+        <ValueCard title="Best environments" description="Collaborative, kind, autonomous, transparent" />
+        <ValueCard title="Open to" description="Interesting opportunities that teach me something new" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-shell">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <SectionHeader
+          eyebrow="Selected experience"
+          title="Recent work with room to go deeper."
+          description="These cards stay intentionally high-level on the homepage. The full Work page will hold the fuller recruiter view."
+        />
+        <a href="/work" class="title-link text-sm font-medium text-accent">
+          See full work page
+        </a>
+      </div>
+      <div class="mt-8 grid gap-5 lg:grid-cols-2">
+        {experience.map(({ data }) => (
+          <ExperienceCard
+            role={data.role}
+            company={data.company}
+            dates={data.dates}
+            summary={data.summary}
+            impacts={data.impacts}
+            tech={data.tech}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-shell">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <SectionHeader
+          eyebrow="Selected projects"
+          title="A mix of engineering proof, frontend work, and personal initiative."
+          description="Some things I&apos;ve built, contributed to, or kept alive because they taught me something."
+        />
+        <a href="/projects" class="title-link text-sm font-medium text-accent">
+          View all projects
+        </a>
+      </div>
+      <div class="mt-8 grid gap-5 lg:grid-cols-3">
+        {projects.map(({ data }) => (
+          <ProjectCard
+            title={data.title}
+            type={data.type}
+            description={data.description}
+            tags={data.tags}
+            href={data.href}
+            github={data.github}
+            note={data.note}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-shell grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem]">
+      <Card className="p-7">
+        <SectionHeader
+          eyebrow="How I work"
+          title="Low-ego, clear, thoughtful collaboration."
+          description="I work best in teams where people communicate clearly, trust each other, and care about quality without turning everything into urgency."
+        />
+        <div class="mt-6 flex flex-wrap gap-2">
+          {workStyleChips.map((chip) => (
+            <Tag>{chip}</Tag>
+          ))}
+        </div>
+      </Card>
+
+      <Card className="p-7">
+        <p class="section-eyebrow mb-3">Resume</p>
+        <h2 class="text-[1.9rem] leading-[1.08]">Keep the essentials one click away.</h2>
+        <p class="mt-4">
+          The resume link is visible in the header, hero, footer, and will stay prominent on
+          the Work and Contact pages too.
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3">
+          <Button href={siteConfig.resumeHref}>Download Resume</Button>
+          <Button href="/work" variant="secondary">
+            Work page
+          </Button>
+        </div>
+      </Card>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-shell">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <SectionHeader
+          eyebrow="Beyond code"
+          title="The site should feel human, not just employable."
+          description="These are the parts of life that bring warmth and texture to the work."
+        />
+        <a href="/about" class="title-link text-sm font-medium text-accent">
+          More about me
+        </a>
+      </div>
+      <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {beyondCodeCards.map((card) => (
+          <ValueCard
+            title={card.title}
+            description={card.description}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-shell">
+      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+        <SectionHeader
+          eyebrow="Now"
+          title="A small living snapshot."
+          description="The dedicated Now page can stay looser and easier to update, but the homepage still gives a quick pulse."
+        />
+        <a href="/now" class="title-link text-sm font-medium text-accent">
+          Visit the Now page
+        </a>
+      </div>
+      <div class="mt-8 grid gap-4 md:grid-cols-3">
+        {nowCards.map((card) => (
+          <NowCard title={card.title} description={card.description} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-space">
+    <div class="container-shell">
+      <Card className="overflow-hidden p-7 md:p-8">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
+          <div>
+            <p class="section-eyebrow mb-3">Contact</p>
+            <h2 class="max-w-[15ch] text-[2rem] leading-[1.06] md:text-[2.7rem]">
+              Open to interesting software opportunities.
+            </h2>
+            <p class="mt-4 max-w-[44rem]">
+              I&apos;m especially interested in work where I can learn something new, contribute
+              to useful products, and collaborate with thoughtful people.
+            </p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <Button href={`mailto:${siteConfig.email}`}>Email me</Button>
+              <Button href="/contact" variant="secondary">
+                Contact page
+              </Button>
+            </div>
+          </div>
+
+          <div class="grid gap-3">
+            <ContactCard label="Email" href={`mailto:${siteConfig.email}`} detail={siteConfig.email} />
+            {siteConfig.socialLinks.map((link) => (
+              <ContactCard label={link.label} href={link.href} detail={link.href} external />
+            ))}
+          </div>
+        </div>
+      </Card>
+    </div>
+  </section>
+</BaseLayout>

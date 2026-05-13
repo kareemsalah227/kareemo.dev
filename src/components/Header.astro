@@ -1,0 +1,44 @@
+---
+import Button from "./Button.astro";
+import MobileMenu from "./MobileMenu";
+import { siteConfig } from "../data/site";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 border-b border-border/70 bg-bg/85 backdrop-blur-md">
+  <div class="container-shell flex min-h-[4.6rem] items-center justify-between gap-4">
+    <a href="/" class="font-serif text-[1.35rem] tracking-[-0.03em] text-text">
+      {siteConfig.name}
+    </a>
+
+    <nav aria-label="Primary" class="hidden items-center gap-6 md:flex">
+      {siteConfig.navItems.map((item) => {
+        const isActive = currentPath === item.href;
+
+        return (
+          <a
+            href={item.href}
+            class={`title-link relative py-2 text-sm font-medium ${
+              isActive ? "text-accent" : "text-text"
+            }`.trim()}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {item.label}
+          </a>
+        );
+      })}
+      <Button href={siteConfig.resumeHref} size="sm">
+        Resume
+      </Button>
+    </nav>
+
+    <MobileMenu
+      client:load
+      currentPath={currentPath}
+      navItems={siteConfig.navItems}
+      socialLinks={siteConfig.socialLinks}
+      resumeHref={siteConfig.resumeHref}
+    />
+  </div>
+</header>

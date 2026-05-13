@@ -1,0 +1,49 @@
+---
+type Variant = "primary" | "secondary" | "ghost";
+type Size = "sm" | "md";
+
+interface Props {
+  href: string;
+  variant?: Variant;
+  size?: Size;
+  className?: string;
+  external?: boolean;
+  download?: boolean;
+}
+
+const {
+  href,
+  variant = "primary",
+  size = "md",
+  className = "",
+  external = false,
+  download = false,
+} = Astro.props;
+
+const baseClasses =
+  "inline-flex min-h-11 items-center justify-center rounded-full border px-5 font-medium transition duration-200 ease-[var(--ease-soft)]";
+
+const variantClasses = {
+  primary:
+    "border-accent bg-accent text-white hover:border-accent/90 hover:bg-accent/90",
+  secondary:
+    "border-border bg-surface text-text hover:border-accent/30 hover:text-accent",
+  ghost:
+    "border-transparent bg-transparent text-text hover:border-border hover:bg-surface/60",
+} satisfies Record<Variant, string>;
+
+const sizeClasses = {
+  sm: "gap-2 px-4 py-2 text-sm",
+  md: "gap-2.5 px-5 py-3 text-[0.98rem]",
+} satisfies Record<Size, string>;
+---
+
+<a
+  href={href}
+  class={`${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`.trim()}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noreferrer" : undefined}
+  download={download}
+>
+  <slot />
+</a>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  tone?: "accent" | "neutral" | "terracotta";
+}
+
+const { tone = "neutral" } = Astro.props;
+
+const toneClasses = {
+  accent: "bg-accent-soft text-accent",
+  neutral: "bg-bg text-muted",
+  terracotta: "bg-terracotta-soft text-terracotta",
+} as const;
+---
+
+<span class={`inline-flex items-center rounded-full px-3 py-1 text-sm font-medium ${toneClasses[tone]}`}>
+  <slot />
+</span>

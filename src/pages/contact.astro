@@ -1,0 +1,22 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+import { siteConfig } from "../data/site";
+---
+
+<PageLayout
+  eyebrow="Contact"
+  title="Contact"
+  description="The dedicated contact page is scaffolded and ready for richer copy and bigger contact cards."
+>
+  <div class="container-shell pb-16">
+    <Card className="p-7">
+      <p class="section-eyebrow mb-3">TODO</p>
+      <p>Replace placeholder contact info before launch so this page becomes a simple, direct way to reach you.</p>
+      <div class="mt-6">
+        <Button href={`mailto:${siteConfig.email}`}>Email</Button>
+      </div>
+    </Card>
+  </div>
+</PageLayout>

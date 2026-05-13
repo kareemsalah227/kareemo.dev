@@ -1,0 +1,26 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Card from "../components/Card.astro";
+import Button from "../components/Button.astro";
+import { siteConfig } from "../data/site";
+---
+
+<PageLayout
+  eyebrow="Work"
+  title="Work"
+  description="Recruiter-friendly professional depth will live here next. For now, the homepage and shared design system are in place."
+>
+  <div class="container-shell pb-16">
+    <Card className="p-7">
+      <p class="section-eyebrow mb-3">Coming soon</p>
+      <h2 class="text-[1.9rem] leading-[1.08]">This page is scaffolded, not finished.</h2>
+      <p class="mt-4">
+        TODO: Add your verified experience, real dates, role details, achievements, and skills snapshot.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <Button href={siteConfig.resumeHref}>Resume</Button>
+        <Button href="/" variant="secondary">Back home</Button>
+      </div>
+    </Card>
+  </div>
+</PageLayout>

@@ -1,0 +1,17 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  className?: string;
+  loading?: "lazy" | "eager";
+}
+
+const { src, alt, className = "", loading = "lazy" } = Astro.props;
+---
+
+<img
+  src={src}
+  alt={alt}
+  loading={loading}
+  class={`h-full w-full rounded-[1.6rem] object-cover ${className}`.trim()}
+/>
