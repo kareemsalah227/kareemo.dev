@@ -19,8 +19,8 @@ const experience = (await getCollection("experience"))
 
 const projects = (await getCollection("projects"))
   .filter((entry) => entry.data.featuredHome)
-  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
-  .slice(0, 3);
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+  // .slice(0, 3);
 ---
 
 <BaseLayout
@@ -84,8 +84,8 @@ const projects = (await getCollection("projects"))
       <Card className="overflow-hidden p-4 reveal-up">
         <div class="rounded-[1.75rem] bg-accent-soft/70 p-3">
           <ResponsiveImage
-            src="/images/placeholders/portrait-warm.svg"
-            alt="Warm portrait placeholder illustration."
+            src="/images/placeholders/picture-bike.jpeg"
+            alt="Portrait photo of Kareem outdoors with a bicycle."
             loading="eager"
           />
         </div>
@@ -218,7 +218,7 @@ const projects = (await getCollection("projects"))
       >
         <SectionHeader
           eyebrow="Personal Projects"
-          title="I also have some personal projects outside of work, they are tech but also non-tech."
+          title="Outside of work, I've worked on a variety of fun projects and challenges. Here are a few highlights."
         />
         <!-- <a href="/projects" class="title-link text-sm font-medium text-accent">
           View all projects

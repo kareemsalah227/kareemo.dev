@@ -9,7 +9,7 @@ export type SocialLink = {
 };
 
 export const siteConfig = {
-  name: "Kareem",
+  name: "Kareem Salah",
   title: "Software Engineer",
   // description:
   //   "Warm, calm, recruiter-friendly personal website for a software engineer who enjoys solving problems across tools, languages, and environments.",
