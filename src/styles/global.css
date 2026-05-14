@@ -22,6 +22,7 @@
   --breakpoint-xl: 80rem;
 
   --radius-4xl: 2rem;
+  --header-height: 4.6rem;
   --shadow-card: 0 12px 30px rgba(35, 33, 31, 0.06);
   --shadow-card-hover: 0 18px 36px rgba(35, 33, 31, 0.1);
   --ease-soft: cubic-bezier(0.22, 1, 0.36, 1);
@@ -96,6 +97,10 @@
 
   .section-space {
     @apply py-10 md:py-14 lg:py-18;
+  }
+
+  .anchor-target {
+    scroll-margin-top: calc(var(--header-height) + 1.1rem);
   }
 
   .section-eyebrow {

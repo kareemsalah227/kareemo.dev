@@ -3,21 +3,14 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Button from "../components/Button.astro";
 import Card from "../components/Card.astro";
-import ContactCard from "../components/ContactCard.astro";
+import CopyEmailCard from "../components/CopyEmailCard";
 import ExperienceCard from "../components/ExperienceCard.astro";
-import NowCard from "../components/NowCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import ResponsiveImage from "../components/ResponsiveImage.astro";
 import SectionHeader from "../components/SectionHeader.astro";
-import Tag from "../components/Tag.astro";
+import SocialIconButton from "../components/SocialIconButton.astro";
 import ValueCard from "../components/ValueCard.astro";
-import {
-  beyondCodeCards,
-  nowCards,
-  quickFacts,
-  siteConfig,
-  workStyleChips,
-} from "../data/site";
+import { siteConfig } from "../data/site";
 
 const experience = (await getCollection("experience"))
   .filter((entry) => entry.data.featuredHome)
@@ -32,9 +25,9 @@ const projects = (await getCollection("projects"))
 
 <BaseLayout
   title={`${siteConfig.name} | ${siteConfig.title}`}
-  description={siteConfig.description}
+  description="Personal website of Kareem, a software engineer."
 >
-  <section class="section-space">
+  <section class="section-space anchor-target" id="top">
     <div
       class="container-shell grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_22rem] lg:items-start"
     >
@@ -146,8 +139,8 @@ const projects = (await getCollection("projects"))
     </div>
   </section>
 
-  <section class="section-space">
-    <div class="container-shell" id="skills">
+  <section class="section-space anchor-target" id="skills">
+    <div class="container-shell">
       <SectionHeader
         eyebrow="Tech Stack & Skills"
         title="Here's a quick snapshot of my professional expertise, skillset, and stack."
@@ -187,11 +180,11 @@ const projects = (await getCollection("projects"))
         /> -->
       </div>
 
-      <p class="mt-5">Those were the highlights, I shared more details in my <a href="work-life" class="font-medium text-accent-contrast">professional life page.</a> 👀</p>
+      <p class="mt-5">Those were the highlights, I shared more details in my <a href="/work" class="font-medium text-accent-contrast">professional life page.</a> 👀</p>
     </div>
   </section>
 
-  <section class="section-space">
+  <section class="section-space anchor-target" id="work-experience">
     <div class="container-shell">
       <div
         class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
@@ -203,7 +196,7 @@ const projects = (await getCollection("projects"))
       </div>
       <div class="mt-8 grid gap-5 lg:grid-cols-2">
         {
-          experience.map(({ data }, index) => (
+          experience.map(({ data }) => (
             <ExperienceCard
               role={data.role}
               company={data.company}
@@ -327,10 +320,10 @@ const projects = (await getCollection("projects"))
     </div>
   </section> -->
 
-  <section class="section-space">
+  <section class="section-space anchor-target" id="contact-me">
     <div class="container-shell">
       <Card className="overflow-hidden p-7 md:p-8">
-        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-start">
           <div>
             <p class="section-eyebrow mb-3 text-accent-contrast">Contact</p>
             <h2
@@ -349,22 +342,15 @@ const projects = (await getCollection("projects"))
             </div>
           </div>
 
-          <div class="grid gap-3">
-            <ContactCard
-              label="Email"
-              href={`mailto:${siteConfig.email}`}
-              detail={siteConfig.email}
-            />
-            {
-              siteConfig.socialLinks.map((link) => (
-                <ContactCard
-                  label={link.label}
-                  href={link.href}
-                  detail={link.href}
-                  external
-                />
-              ))
-            }
+          <div class="grid content-start gap-3 self-start">
+            <CopyEmailCard client:load email={siteConfig.email} />
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+              {
+                siteConfig.socialLinks.map((link) => (
+                  <SocialIconButton href={link.href} label={link.label} />
+                ))
+              }
+            </div>
           </div>
         </div>
       </Card>

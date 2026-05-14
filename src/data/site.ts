@@ -9,28 +9,27 @@ export type SocialLink = {
 };
 
 export const siteConfig = {
-  // TODO: Confirm the preferred public display name.
   name: "Kareem",
   title: "Software Engineer",
-  description:
-    "Warm, calm, recruiter-friendly personal website for a software engineer who enjoys solving problems across tools, languages, and environments.",
-  intro:
-    "Software Engineer who likes solving problems with computers. Recently focused on frontend-heavy product work, but comfortable working across tools, languages, and environments when the problem is interesting.",
-  email: "hello@example.com",
+  // description:
+  //   "Warm, calm, recruiter-friendly personal website for a software engineer who enjoys solving problems across tools, languages, and environments.",
+  // intro:
+  //   "Software Engineer who likes solving problems with computers. Recently focused on frontend-heavy product work, but comfortable working across tools, languages, and environments when the problem is interesting.",
+  email: "hello@kareemo.dev",
   // TODO: Replace placeholder links with your real profiles and upload a real PDF to /public/resume.pdf.
   resumeHref: "/resume.pdf",
   navItems: [
     { href: "/", label: "Home" },
-    { href: "/work", label: "Work" },
-    { href: "/projects", label: "Projects" },
-    { href: "/about", label: "About" },
-    { href: "/now", label: "Now" },
-    { href: "/contact", label: "Contact" },
+    // { href: "/work", label: "Work" },
+    // { href: "/projects", label: "Projects" },
+    // { href: "/about", label: "About" },
+    // { href: "/now", label: "Now" },
+    // { href: "/contact", label: "Contact" },
   ] satisfies NavItem[],
   socialLinks: [
-    { href: "https://github.com/your-handle", label: "GitHub" },
-    { href: "https://www.linkedin.com/in/your-handle", label: "LinkedIn" },
-    { href: "https://www.youtube.com/@your-channel", label: "YouTube" },
+    { href: "https://github.com/kareemsalah227", label: "GitHub" },
+    { href: "https://www.linkedin.com/in/kareem-salah-816379b1/", label: "LinkedIn" },
+    { href: "https://www.youtube.com/channel/UCTMl5K6u7WSKmIsozUoGwPw/", label: "YouTube" },
   ] satisfies SocialLink[],
 };
 

@@ -1,0 +1,48 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+
+const iconClasses = "h-4.5 w-4.5 shrink-0";
+const iconColorClass =
+  label === "GitHub"
+    ? "text-[#181717]"
+    : label === "LinkedIn"
+      ? "text-[#0A66C2]"
+      : label === "YouTube"
+        ? "text-[#FF0033]"
+        : "text-accent";
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noreferrer"
+  class="surface-card inline-flex h-auto w-full self-start items-center justify-center gap-2 rounded-xl px-3 py-2 text-[0.92rem] leading-none font-medium text-text transition duration-200 ease-[var(--ease-soft)] hover:-translate-y-0.5 hover:border-accent/30 hover:bg-bg/70 focus-visible:-translate-y-0.5"
+>
+  {
+    label === "GitHub" && (
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class={`${iconClasses} ${iconColorClass}`}>
+        <path d="M12 .5C5.65.5.5 5.65.5 12A11.5 11.5 0 0 0 8.36 22.7c.58.1.79-.25.79-.56v-2.18c-3.18.7-3.85-1.35-3.85-1.35-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.75 1.18 1.75 1.18 1.02 1.75 2.68 1.24 3.34.95.1-.74.4-1.24.73-1.53-2.54-.29-5.2-1.27-5.2-5.66 0-1.25.45-2.27 1.18-3.07-.12-.29-.51-1.45.11-3.02 0 0 .97-.31 3.18 1.17A11.1 11.1 0 0 1 12 6.32c.98 0 1.97.13 2.89.38 2.2-1.48 3.17-1.17 3.17-1.17.63 1.57.24 2.73.12 3.02.73.8 1.18 1.82 1.18 3.07 0 4.4-2.67 5.36-5.22 5.64.41.35.77 1.03.77 2.08v3.09c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+      </svg>
+    )
+  }
+  {
+    label === "LinkedIn" && (
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class={`${iconClasses} ${iconColorClass}`}>
+        <path d="M4.98 3.5A2.48 2.48 0 1 0 5 8.46a2.48 2.48 0 0 0-.02-4.96ZM2.75 9.75h4.5v11.75h-4.5V9.75Zm7 0h4.32v1.6h.06c.6-1.14 2.08-2.35 4.28-2.35 4.58 0 5.42 3.01 5.42 6.92v7.58h-4.5v-6.72c0-1.6-.03-3.66-2.23-3.66-2.24 0-2.58 1.75-2.58 3.54v6.84h-4.5V9.75Z" />
+      </svg>
+    )
+  }
+  {
+    label === "YouTube" && (
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" class={`${iconClasses} ${iconColorClass}`}>
+        <path d="M23.04 7.2a3 3 0 0 0-2.1-2.12C19.08 4.5 12 4.5 12 4.5s-7.08 0-8.94.58A3 3 0 0 0 .96 7.2 31.4 31.4 0 0 0 .5 12a31.4 31.4 0 0 0 .46 4.8 3 3 0 0 0 2.1 2.12c1.86.58 8.94.58 8.94.58s7.08 0 8.94-.58a3 3 0 0 0 2.1-2.12A31.4 31.4 0 0 0 23.5 12a31.4 31.4 0 0 0-.46-4.8ZM9.75 15.14V8.86L15.5 12l-5.75 3.14Z" />
+      </svg>
+    )
+  }
+  <span>{label}</span>
+</a>

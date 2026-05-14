@@ -24,69 +24,123 @@ export default function MobileMenu({
     };
   }, [open]);
 
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="md:hidden">
       <button
         type="button"
-        className="inline-flex min-h-11 items-center rounded-full border border-border bg-surface px-4 text-sm font-medium text-text"
+        className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-border bg-surface px-3 text-text transition duration-200 ease-[var(--ease-soft)] hover:border-accent/30 hover:text-accent"
         aria-expanded={open}
         aria-controls="mobile-menu-panel"
+        aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((value) => !value)}
       >
-        {open ? "Close" : "Menu"}
+        <span className="relative block h-4 w-5">
+          <span
+            className={`absolute left-0 top-0 block h-0.5 w-5 rounded-full bg-current transition duration-300 ease-[var(--ease-soft)] ${
+              open ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`absolute left-0 top-[7px] block h-0.5 w-5 rounded-full bg-current transition duration-200 ease-[var(--ease-soft)] ${
+              open ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`absolute left-0 top-[14px] block h-0.5 w-5 rounded-full bg-current transition duration-300 ease-[var(--ease-soft)] ${
+              open ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </span>
       </button>
 
-      {open ? (
-        <div
-          id="mobile-menu-panel"
-          className="fixed inset-x-4 top-[4.6rem] z-50 rounded-[1.75rem] border border-border bg-surface p-5 shadow-card"
-        >
-          <nav aria-label="Mobile" className="flex flex-col gap-2">
-            {navItems.map((item) => {
-              const isActive = currentPath === item.href;
+      {open && (
+        <div className="pointer-events-none fixed inset-0 z-50" aria-hidden={!open}>
+          <button
+            type="button"
+            className="pointer-events-auto absolute inset-x-0 bottom-0 top-[var(--header-height)] bg-text/20 backdrop-blur-[2px]"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+          />
 
-              return (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className={`rounded-2xl px-4 py-3 text-lg ${
-                    isActive ? "bg-accent-soft text-accent" : "text-text"
-                  }`}
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </a>
-              );
-            })}
-            <a
-              href={resumeHref}
-              className="mt-2 rounded-2xl bg-accent px-4 py-3 text-lg text-white"
-              onClick={() => setOpen(false)}
-            >
-              Resume
-            </a>
-          </nav>
+          <div
+            id="mobile-menu-panel"
+            className="pointer-events-auto absolute right-0 top-[var(--header-height)] flex h-[calc(100dvh-var(--header-height))] w-[min(86vw,22rem)] flex-col border-l border-border bg-surface px-5 pb-6 pt-6 shadow-[0_20px_45px_rgba(35,33,31,0.16)] animate-fade-up"
+          >
+            <nav aria-label="Mobile" className="flex flex-col gap-2">
+              {navItems.map((item) => {
+                const isActive = currentPath === item.href;
 
-          <div className="mt-6 border-t border-border pt-5">
-            <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
-              Elsewhere
-            </p>
-            <div className="mt-3 flex flex-wrap gap-4">
-              {socialLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="title-link text-sm font-medium text-text"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {link.label}
-                </a>
-              ))}
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    className={`rounded-2xl px-4 py-3 text-lg transition duration-200 ease-[var(--ease-soft)] ${
+                      isActive
+                        ? "bg-accent-soft text-accent"
+                        : "text-text hover:bg-bg"
+                    }`}
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
+              <a
+                href={resumeHref}
+                className="mt-2 rounded-2xl bg-accent px-4 py-3 text-lg text-white transition duration-200 ease-[var(--ease-soft)] hover:bg-accent/90"
+                onClick={() => setOpen(false)}
+              >
+                Resume
+              </a>
+            </nav>
+
+            <div className="mt-auto border-t border-border pt-5">
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
+                Elsewhere
+              </p>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="rounded-full border border-border px-3 py-2 text-sm font-medium text-text transition duration-200 ease-[var(--ease-soft)] hover:border-accent/30 hover:text-accent"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-      ) : null}
+      )}
     </div>
   );
 }

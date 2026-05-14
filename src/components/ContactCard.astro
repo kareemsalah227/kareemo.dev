@@ -1,24 +1,37 @@
 ---
 import Card from "./Card.astro";
+import Button from "./Button.astro";
 
 interface Props {
   label: string;
-  href: string;
   detail: string;
+  href?: string;
+  actionLabel?: string;
+  description?: string;
   external?: boolean;
 }
 
-const { label, href, detail, external = false } = Astro.props;
+const {
+  label,
+  detail,
+  href,
+  actionLabel,
+  description,
+  external = false,
+} = Astro.props;
 ---
 
 <Card className="p-5">
-  <a
-    href={href}
-    class="block"
-    target={external ? "_blank" : undefined}
-    rel={external ? "noreferrer" : undefined}
-  >
+  <div class="space-y-3">
     <p class="font-mono text-xs uppercase tracking-[0.18em] text-accent">{label}</p>
     <p class="mt-3 text-base text-text">{detail}</p>
-  </a>
+    {description && <p class="text-sm">{description}</p>}
+    {href && actionLabel && (
+      <div class="pt-1">
+        <Button href={href} variant="secondary" size="sm" external={external}>
+          {actionLabel}
+        </Button>
+      </div>
+    )}
+  </div>
 </Card>
