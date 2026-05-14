@@ -30,38 +30,61 @@ const projects = (await getCollection("projects"))
   .slice(0, 3);
 ---
 
-<BaseLayout title={`${siteConfig.name} | ${siteConfig.title}`} description={siteConfig.description}>
+<BaseLayout
+  title={`${siteConfig.name} | ${siteConfig.title}`}
+  description={siteConfig.description}
+>
   <section class="section-space">
-    <div class="container-shell grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_22rem] lg:items-start">
+    <div
+      class="container-shell grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_22rem] lg:items-start"
+    >
       <div class="reveal-up">
-        <p class="section-eyebrow mb-4 text-accent-contrast">Software Engineer</p>
-        <h1 class="max-w-[13ch] text-[2.65rem] leading-[0.98] md:text-[4.25rem]">
-          Hi, I&apos;m {siteConfig.name}.
+        <!-- <p class="section-eyebrow mb-4 text-accent-contrast">Software Engineer</p> -->
+        <h1
+          class="max-w-[13ch] text-[2.65rem] leading-[0.98] md:text-[4.25rem]"
+        >
+          Hi, I&apos;m {siteConfig.name}. 👋🏼
         </h1>
         <div class="mt-6 max-w-[42rem] space-y-4">
           <p class="text-[1.05rem] md:text-[1.15rem]">
-            I&apos;m a software engineer who likes solving problems with computers. Recently,
+            <!-- I&apos;m a software engineer who likes solving problems with computers. Recently,
             that has meant a lot of frontend-heavy product work, but I enjoy working across
-            tools, languages, and environments when the problem is interesting.
+            tools, languages, and environments when the problem is interesting. -->
+            <!-- I&apos;m a software engineer during the week, then I make wonderful pizzas on weekends! -->
+            <!-- I&apos;m a software engineer who likes solving problems with computers. Recently,
+              that has meant a lot of frontend-heavy product work, but I enjoy working across
+              tools, languages, and environments when the problem is interesting. -->
+            And I&apos;m a software engineer.
           </p>
           <p class="text-[1.05rem] md:text-[1.15rem]">
-            I care about simple systems, clear communication, kind collaboration, and
-            building things that are useful.
+            I spend time with AI and computers more than anything else. I also
+            do lots of other things during work like project management,
+            mentoring and hiring.
+
+            <a
+              href="#work-experience"
+              class="title-link text-[1.05rem] font-medium text-accent-contrast"
+              >Click here</a
+            > to read more about what I do at work.
           </p>
-        </div>
-        <div class="mt-8 flex flex-wrap gap-3">
-          <Button href={siteConfig.resumeHref}>Download Resume</Button>
-          <Button href="/contact" variant="secondary">
-            Contact Me
-          </Button>
-          <Button href="/work" variant="ghost">
-            View Work
-          </Button>
-        </div>
-        <div class="mt-8 flex flex-wrap gap-2">
-          {quickFacts.map((fact) => (
-            <Tag tone="accent">{fact}</Tag>
-          ))}
+          <p class="text-[1.05rem] md:text-[1.15rem]">
+            When I'm not at my computer, I'll be at the kitchen crafting that
+            perfect neapolitan pizza with classical or exotic toppings. Or I'll
+            be outdoors hiking somewhere, cycling, or working on some
+            interesting project.
+          </p>
+          <p class="text-[1.05rem] md:text-[1.15rem]">
+            Nowadays days I'm learning German. 🇩🇪</br>And it's so interesting and fun!
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <Button href={siteConfig.resumeHref}>Download My Resume</Button>
+            <Button href="#contact-me" variant="secondary">Contact Me</Button>
+            <!-- <Button href="/work" variant="ghost">View Work</Button> -->
+          </div>
+          <!-- <div class="mt-8 flex flex-wrap gap-2">
+            {quickFacts.map((fact) => <Tag tone="accent">{fact}</Tag>)}
+          </div> -->
         </div>
       </div>
 
@@ -76,20 +99,47 @@ const projects = (await getCollection("projects"))
         <div class="mt-5 space-y-4 px-2 pb-2">
           <div class="flex items-center justify-between gap-3">
             <div>
-              <p class="font-mono text-xs uppercase tracking-[0.18em] text-accent">Currently</p>
-              <p class="mt-2 text-base text-text">Open to interesting software opportunities.</p>
+              <p
+                class="font-mono text-xs uppercase tracking-[0.18em] text-accent-contrast"
+              >
+                Currently
+              </p>
+              <p class="mt-2 text-base text-text">
+                ~ Senior Software Engineer @ Zalando.
+              </p>
+              <p class="mt-2 text-base text-text">
+                ~ Open to interesting software engineering opportunities.
+              </p>
             </div>
-            <span class="inline-flex h-3 w-3 rounded-full bg-accent"></span>
+            <!-- <span class="inline-flex h-3 w-3 rounded-full bg-accent"></span> -->
           </div>
           <div class="grid gap-3">
-            <div class="rounded-2xl bg-surface px-4 py-3">
-              <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Recent focus</p>
-              <p class="mt-2 text-sm text-text">Frontend-heavy product work with a broader engineering mindset.</p>
+            <div class="rounded-2xl bg-surface py-3">
+              <p
+                class="font-mono text-xs uppercase tracking-[0.18em] text-accent-contrast"
+              >
+                Recent focus
+              </p>
+              <p class="mt-2 text-sm text-text">
+                Frontend-heavy product work with a broader engineering mindset
+                including backend and devops.
+              </p>
+              <p class="mt-2 text-sm text-text">
+                <a
+                  href="#skills"
+                  class="title-link text-sm font-medium text-accent-contrast"
+                  >Check out my tech stack and skillset!</a
+                >
+              </p>
             </div>
-            <div class="rounded-2xl bg-surface px-4 py-3">
-              <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">Looking for</p>
-              <p class="mt-2 text-sm text-text">Thoughtful teams, useful products, and chances to keep learning.</p>
-            </div>
+            <!-- <div class="rounded-2xl bg-surface py-3">
+                <p class="font-mono text-xs uppercase tracking-[0.18em] text-muted">
+                  Looking for
+                </p>
+                <p class="mt-2 text-sm text-text">
+                  Thoughtful teams, useful products, and chances to keep learning.
+                </p>
+              </div> -->
           </div>
         </div>
       </Card>
@@ -97,24 +147,49 @@ const projects = (await getCollection("projects"))
   </section>
 
   <section class="section-space">
-    <div class="container-shell">
+    <div class="container-shell" id="skills">
       <SectionHeader
-        eyebrow="At a glance"
-        title="A quick read for recruiters, with a little more personality for everyone else."
+        eyebrow="Tech Stack & Skills"
+        title="Here's a quick snapshot of my professional expertise, skillset, and stack."
       />
       <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5">
-        <ValueCard title="Role" description="Software Engineer" />
-        <ValueCard title="Recent focus" description="Frontend-heavy product work" />
-        <ValueCard title="Strengths" description="Problem-solving, clean code, communication, simplicity" />
-        <ValueCard title="Best environments" description="Collaborative, kind, autonomous, transparent" />
-        <ValueCard title="Open to" description="Interesting opportunities that teach me something new" />
+        <ValueCard
+          title="Education"
+          description="Bachelors in Computer Science"
+        />
+        <ValueCard
+          title="Years Of Experience"
+          description="9 years of professional engineering experience"
+        />
+        <ValueCard
+          title="Frontend"
+          description="NextJS, React, Typescript, Tailwind CSS, Component Libraries"
+        />
+        <ValueCard
+          title="Backend"
+          description="NodeJS, ExpressJS, GoLang, PostgreSQL, Kubernetes, AWS, Docker"
+        />
+        <!-- <ValueCard
+          title="Strengths"
+          description="Problem-solving, clean code, communication, simplicity over complexity"
+        />
+        <ValueCard
+          title="Best environments"
+          description="Collaborative, kind"
+        />
+        <ValueCard
+          title="Open to"
+          description="Interesting opportunities that teach me something new"
+        /> -->
       </div>
     </div>
   </section>
 
   <section class="section-space">
     <div class="container-shell">
-      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div
+        class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+      >
         <SectionHeader
           eyebrow="Selected experience"
           title="Recent work with room to go deeper."
@@ -125,44 +200,50 @@ const projects = (await getCollection("projects"))
         </a>
       </div>
       <div class="mt-8 grid gap-5 lg:grid-cols-2">
-        {experience.map(({ data }) => (
-          <ExperienceCard
-            role={data.role}
-            company={data.company}
-            dates={data.dates}
-            summary={data.summary}
-            impacts={data.impacts}
-            tech={data.tech}
-          />
-        ))}
+        {
+          experience.map(({ data }) => (
+            <ExperienceCard
+              role={data.role}
+              company={data.company}
+              dates={data.dates}
+              summary={data.summary}
+              impacts={data.impacts}
+              tech={data.tech}
+            />
+          ))
+        }
       </div>
     </div>
   </section>
 
   <section class="section-space">
     <div class="container-shell">
-      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div
+        class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+      >
         <SectionHeader
           eyebrow="Selected projects"
           title="A mix of engineering proof, frontend work, and personal initiative."
-          description="Some things I&apos;ve built, contributed to, or kept alive because they taught me something."
+          description="Some things I've built, contributed to, or kept alive because they taught me something."
         />
         <a href="/projects" class="title-link text-sm font-medium text-accent">
           View all projects
         </a>
       </div>
       <div class="mt-8 grid gap-5 lg:grid-cols-3">
-        {projects.map(({ data }) => (
-          <ProjectCard
-            title={data.title}
-            type={data.type}
-            description={data.description}
-            tags={data.tags}
-            href={data.href}
-            github={data.github}
-            note={data.note}
-          />
-        ))}
+        {
+          projects.map(({ data }) => (
+            <ProjectCard
+              title={data.title}
+              type={data.type}
+              description={data.description}
+              tags={data.tags}
+              href={data.href}
+              github={data.github}
+              note={data.note}
+            />
+          ))
+        }
       </div>
     </div>
   </section>
@@ -176,24 +257,22 @@ const projects = (await getCollection("projects"))
           description="I work best in teams where people communicate clearly, trust each other, and care about quality without turning everything into urgency."
         />
         <div class="mt-6 flex flex-wrap gap-2">
-          {workStyleChips.map((chip) => (
-            <Tag>{chip}</Tag>
-          ))}
+          {workStyleChips.map((chip) => <Tag>{chip}</Tag>)}
         </div>
       </Card>
 
       <Card className="p-7">
         <p class="section-eyebrow mb-3">Resume</p>
-        <h2 class="text-[1.9rem] leading-[1.08]">Keep the essentials one click away.</h2>
+        <h2 class="text-[1.9rem] leading-[1.08]">
+          Keep the essentials one click away.
+        </h2>
         <p class="mt-4">
-          The resume link is visible in the header, hero, footer, and will stay prominent on
-          the Work and Contact pages too.
+          The resume link is visible in the header, hero, footer, and will stay
+          prominent on the Work and Contact pages too.
         </p>
         <div class="mt-6 flex flex-wrap gap-3">
           <Button href={siteConfig.resumeHref}>Download Resume</Button>
-          <Button href="/work" variant="secondary">
-            Work page
-          </Button>
+          <Button href="/work" variant="secondary"> Work page </Button>
         </div>
       </Card>
     </div>
@@ -201,7 +280,9 @@ const projects = (await getCollection("projects"))
 
   <section class="section-space">
     <div class="container-shell">
-      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div
+        class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+      >
         <SectionHeader
           eyebrow="Beyond code"
           title="The site should feel human, not just employable."
@@ -212,19 +293,20 @@ const projects = (await getCollection("projects"))
         </a>
       </div>
       <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-        {beyondCodeCards.map((card) => (
-          <ValueCard
-            title={card.title}
-            description={card.description}
-          />
-        ))}
+        {
+          beyondCodeCards.map((card) => (
+            <ValueCard title={card.title} description={card.description} />
+          ))
+        }
       </div>
     </div>
   </section>
 
   <section class="section-space">
     <div class="container-shell">
-      <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div
+        class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
+      >
         <SectionHeader
           eyebrow="Now"
           title="A small living snapshot."
@@ -235,9 +317,11 @@ const projects = (await getCollection("projects"))
         </a>
       </div>
       <div class="mt-8 grid gap-4 md:grid-cols-3">
-        {nowCards.map((card) => (
-          <NowCard title={card.title} description={card.description} />
-        ))}
+        {
+          nowCards.map((card) => (
+            <NowCard title={card.title} description={card.description} />
+          ))
+        }
       </div>
     </div>
   </section>
@@ -248,12 +332,15 @@ const projects = (await getCollection("projects"))
         <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
           <div>
             <p class="section-eyebrow mb-3">Contact</p>
-            <h2 class="max-w-[15ch] text-[2rem] leading-[1.06] md:text-[2.7rem]">
+            <h2
+              class="max-w-[15ch] text-[2rem] leading-[1.06] md:text-[2.7rem]"
+            >
               Open to interesting software opportunities.
             </h2>
             <p class="mt-4 max-w-[44rem]">
-              I&apos;m especially interested in work where I can learn something new, contribute
-              to useful products, and collaborate with thoughtful people.
+              I&apos;m especially interested in work where I can learn something
+              new, contribute to useful products, and collaborate with
+              thoughtful people.
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
               <Button href={`mailto:${siteConfig.email}`}>Email me</Button>
@@ -264,10 +351,21 @@ const projects = (await getCollection("projects"))
           </div>
 
           <div class="grid gap-3">
-            <ContactCard label="Email" href={`mailto:${siteConfig.email}`} detail={siteConfig.email} />
-            {siteConfig.socialLinks.map((link) => (
-              <ContactCard label={link.label} href={link.href} detail={link.href} external />
-            ))}
+            <ContactCard
+              label="Email"
+              href={`mailto:${siteConfig.email}`}
+              detail={siteConfig.email}
+            />
+            {
+              siteConfig.socialLinks.map((link) => (
+                <ContactCard
+                  label={link.label}
+                  href={link.href}
+                  detail={link.href}
+                  external
+                />
+              ))
+            }
           </div>
         </div>
       </Card>
