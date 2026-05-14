@@ -1,0 +1,38 @@
+---
+import PageLayout from "../layouts/PageLayout.astro";
+import Card from "../components/Card.astro";
+import { siteConfig } from "../data/site";
+---
+
+<PageLayout
+  eyebrow="Privacy"
+  title="Privacy"
+  description="A short explanation of what this website collects and what it does not."
+>
+  <div class="container-shell pb-16">
+    <Card className="max-w-[760px] p-7">
+      <div class="space-y-5 text-shell">
+        <p>
+          This website is a static personal site. It does not use a contact form, user accounts,
+          comment widgets, or advertising trackers.
+        </p>
+        <p>
+          To understand aggregate traffic and popular pages, this site uses Vercel Web Analytics.
+          The setup is configured without cookies and strips URL query strings and fragments before
+          analytics events are sent.
+        </p>
+        <p>
+          If you email me directly, your email provider and mine will process that message as part
+          of normal email delivery.
+        </p>
+        <p>
+          Questions about this site or privacy-related matters can be sent to
+          <a class="title-link ml-1 font-medium text-accent-contrast" href={`mailto:${siteConfig.email}`}>
+            {siteConfig.email}
+          </a>.
+        </p>
+        <p class="text-sm">Last updated: May 14, 2026</p>
+      </div>
+    </Card>
+  </div>
+</PageLayout>

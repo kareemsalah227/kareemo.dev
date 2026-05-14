@@ -11,10 +11,11 @@ export type SocialLink = {
 export const siteConfig = {
   name: "Kareem Salah",
   title: "Software Engineer",
-  // description:
-  //   "Warm, calm, recruiter-friendly personal website for a software engineer who enjoys solving problems across tools, languages, and environments.",
-  // intro:
-  //   "Software Engineer who likes solving problems with computers. Recently focused on frontend-heavy product work, but comfortable working across tools, languages, and environments when the problem is interesting.",
+  siteUrl: "https://kareemo.dev",
+  description:
+    "Personal website of Kareem Salah, a software engineer who enjoys solving problems across frontend, backend, product, and creative work.",
+  ogImage: "/images/placeholders/picture-bike.jpeg",
+  locale: "en_US",
   email: "hello@kareemo.dev",
   // TODO: Replace placeholder links with your real profiles and upload a real PDF to /public/resume.pdf.
   resumeHref: "/resume.pdf",

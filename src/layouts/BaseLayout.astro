@@ -1,17 +1,47 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Analytics from "@vercel/analytics/astro";
+import { siteConfig } from "../data/site";
 import "../styles/global.css";
 
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  noindex?: boolean;
 }
 
 const {
   title,
   description = "Personal website for a software engineer.",
+  image = siteConfig.ogImage,
+  noindex = false,
 } = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, siteConfig.siteUrl).toString();
+const socialImage = new URL(image, siteConfig.siteUrl).toString();
+const robotsContent = noindex ? "noindex, nofollow" : "index, follow";
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+      description: siteConfig.description,
+      inLanguage: "en",
+    },
+    {
+      "@type": "Person",
+      name: siteConfig.name,
+      url: siteConfig.siteUrl,
+      jobTitle: siteConfig.title,
+      email: siteConfig.email,
+      sameAs: siteConfig.socialLinks.map((link) => link.href),
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -20,14 +50,47 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="robots" content={robotsContent} />
+    <meta name="author" content={siteConfig.name} />
+    <meta name="theme-color" content="#F8F4EC" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon1-small.png" type="image/png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content={siteConfig.locale} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <script is:inline>
+      window.webAnalyticsBeforeSend = function (event) {
+        if (!event?.url) return event;
+
+        try {
+          const url = new URL(event.url, window.location.origin);
+          url.search = "";
+          url.hash = "";
+          return { ...event, url: url.pathname };
+        } catch {
+          return event;
+        }
+      };
+    </script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+    <Analytics />
   </head>
   <body>
     <a
