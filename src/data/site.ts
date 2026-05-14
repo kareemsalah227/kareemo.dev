@@ -20,7 +20,7 @@ export const siteConfig = {
   // TODO: Replace placeholder links with your real profiles and upload a real PDF to /public/resume.pdf.
   resumeHref: "/resume.pdf",
   navItems: [
-    { href: "/", label: "Home" },
+    // { href: "/", label: "Home" },
     // { href: "/work", label: "Work" },
     // { href: "/projects", label: "Projects" },
     // { href: "/about", label: "About" },
