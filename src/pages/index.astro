@@ -21,8 +21,8 @@ import {
 
 const experience = (await getCollection("experience"))
   .filter((entry) => entry.data.featuredHome)
-  .sort((a, b) => a.data.sortOrder - b.data.sortOrder)
-  .slice(0, 2);
+  .sort((a, b) => a.data.sortOrder - b.data.sortOrder);
+  // .slice(0, 2);
 
 const projects = (await getCollection("projects"))
   .filter((entry) => entry.data.featuredHome)
@@ -158,8 +158,12 @@ const projects = (await getCollection("projects"))
           description="Bachelors in Computer Science"
         />
         <ValueCard
-          title="Years Of Experience"
+          title="Years of Experience"
           description="9 years of professional engineering experience"
+        />
+        <ValueCard
+          title="AI Tech"
+          description="Claude Code, CoPilot, Gemini, MCP, and more on the way!"
         />
         <ValueCard
           title="Frontend"
@@ -182,6 +186,8 @@ const projects = (await getCollection("projects"))
           description="Interesting opportunities that teach me something new"
         /> -->
       </div>
+
+      <p class="mt-5">Those were the highlights, I shared more details in my <a href="work-life" class="font-medium text-accent-contrast">professional life page.</a> 👀</p>
     </div>
   </section>
 
@@ -191,17 +197,13 @@ const projects = (await getCollection("projects"))
         class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
       >
         <SectionHeader
-          eyebrow="Selected experience"
-          title="Recent work with room to go deeper."
-          description="These cards stay intentionally high-level on the homepage. The full Work page will hold the fuller recruiter view."
+          eyebrow="Work Experience"
+          title="Below is a summary of my most recent and relevant work experience."
         />
-        <a href="/work" class="title-link text-sm font-medium text-accent">
-          See full work page
-        </a>
       </div>
       <div class="mt-8 grid gap-5 lg:grid-cols-2">
         {
-          experience.map(({ data }) => (
+          experience.map(({ data }, index) => (
             <ExperienceCard
               role={data.role}
               company={data.company}
@@ -216,14 +218,14 @@ const projects = (await getCollection("projects"))
     </div>
   </section>
 
-  <section class="section-space">
+  <!-- <section class="section-space">
     <div class="container-shell">
       <div
         class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
       >
         <SectionHeader
-          eyebrow="Selected projects"
-          title="A mix of engineering proof, frontend work, and personal initiative."
+          eyebrow="Personal Projects"
+          title="A mix of engineering proof, frontend work, and personal initiatives."
           description="Some things I've built, contributed to, or kept alive because they taught me something."
         />
         <a href="/projects" class="title-link text-sm font-medium text-accent">
@@ -370,5 +372,5 @@ const projects = (await getCollection("projects"))
         </div>
       </Card>
     </div>
-  </section>
+  </section> -->
 </BaseLayout>
