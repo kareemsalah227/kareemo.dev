@@ -218,19 +218,18 @@ const projects = (await getCollection("projects"))
     </div>
   </section>
 
-  <!-- <section class="section-space">
+  <section class="section-space">
     <div class="container-shell">
       <div
         class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
       >
         <SectionHeader
           eyebrow="Personal Projects"
-          title="A mix of engineering proof, frontend work, and personal initiatives."
-          description="Some things I've built, contributed to, or kept alive because they taught me something."
+          title="I also have some personal projects outside of work, they are tech but also non-tech."
         />
-        <a href="/projects" class="title-link text-sm font-medium text-accent">
+        <!-- <a href="/projects" class="title-link text-sm font-medium text-accent">
           View all projects
-        </a>
+        </a> -->
       </div>
       <div class="mt-8 grid gap-5 lg:grid-cols-3">
         {
@@ -250,7 +249,7 @@ const projects = (await getCollection("projects"))
     </div>
   </section>
 
-  <section class="section-space">
+  <!-- <section class="section-space">
     <div class="container-shell grid gap-6 lg:grid-cols-[minmax(0,1fr)_24rem]">
       <Card className="p-7">
         <SectionHeader
@@ -278,9 +277,9 @@ const projects = (await getCollection("projects"))
         </div>
       </Card>
     </div>
-  </section>
+  </section> -->
 
-  <section class="section-space">
+  <!-- <section class="section-space">
     <div class="container-shell">
       <div
         class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
@@ -302,9 +301,9 @@ const projects = (await getCollection("projects"))
         }
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <section class="section-space">
+  <!-- <section class="section-space">
     <div class="container-shell">
       <div
         class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between"
@@ -326,29 +325,27 @@ const projects = (await getCollection("projects"))
         }
       </div>
     </div>
-  </section>
+  </section> -->
 
   <section class="section-space">
     <div class="container-shell">
       <Card className="overflow-hidden p-7 md:p-8">
-        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]">
           <div>
-            <p class="section-eyebrow mb-3">Contact</p>
+            <p class="section-eyebrow mb-3 text-accent-contrast">Contact</p>
             <h2
               class="max-w-[15ch] text-[2rem] leading-[1.06] md:text-[2.7rem]"
             >
-              Open to interesting software opportunities.
+              Wanna build something together? Or just wanna get in touch?
             </h2>
             <p class="mt-4 max-w-[44rem]">
-              I&apos;m especially interested in work where I can learn something
-              new, contribute to useful products, and collaborate with
-              thoughtful people.
+              I'll be happy to hear from you!
             </p>
             <div class="mt-6 flex flex-wrap gap-3">
               <Button href={`mailto:${siteConfig.email}`}>Email me</Button>
-              <Button href="/contact" variant="secondary">
+              <!-- <Button href="/contact" variant="secondary">
                 Contact page
-              </Button>
+              </Button> -->
             </div>
           </div>
 
@@ -372,5 +369,5 @@ const projects = (await getCollection("projects"))
         </div>
       </Card>
     </div>
-  </section> -->
+  </section>
 </BaseLayout>
