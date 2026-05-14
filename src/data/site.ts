@@ -8,6 +8,8 @@ export type SocialLink = {
   label: string;
 };
 
+const navItems: NavItem[] = [];
+
 export const siteConfig = {
   name: "Kareem Salah",
   title: "Software Engineer",
@@ -19,14 +21,7 @@ export const siteConfig = {
   email: "hello@kareemo.dev",
   // TODO: Replace placeholder links with your real profiles and upload a real PDF to /public/resume.pdf.
   resumeHref: "/resume.pdf",
-  navItems: [
-    // { href: "/", label: "Home" },
-    // { href: "/work", label: "Work" },
-    // { href: "/projects", label: "Projects" },
-    // { href: "/about", label: "About" },
-    // { href: "/now", label: "Now" },
-    // { href: "/contact", label: "Contact" },
-  ] satisfies NavItem[],
+  navItems,
   socialLinks: [
     { href: "https://github.com/kareemsalah227", label: "GitHub" },
     { href: "https://www.linkedin.com/in/kareem-salah-816379b1/", label: "LinkedIn" },
